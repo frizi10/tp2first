@@ -1,23 +1,37 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Button from './Button';
+import Title from './Title';
+import Products from './Products';
+import { useState } from 'react';
+
 
 function App() {
+  
+  const [ajoutProduct, setAjoutProduct] = useState(false);
+  
+
+  const handleClicAjoutProduct = () => {
+
+   setAjoutProduct((oldState=>{
+    
+    return(!oldState)
+   }));
+  
+  }
+  const action = ajoutProduct ? 'Fermer l\'ajout' : 'Ajouter';
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+       <Title text = 'Liste Des Produits'/>
+       <Products ajoutProduct = {ajoutProduct} fermerajoutProduct ={()=>setAjoutProduct(false)}/>
+       <Button
+        
+          action = {action}
+          typeBtn= "btn-success" 
+          css = "w-100" 
+          click= { handleClicAjoutProduct } />  
+        
+      
     </div>
   );
 }
